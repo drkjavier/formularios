@@ -36,6 +36,16 @@
         </div>
     </div>
 
+    <div class="form-group row" [ngClass]="{ 'has-danger': !forma.get('correo').valid }">
+        <label class="col-2 col-form-label">Pasatiempos</label>
+        <div class="col-md-8" formArrayName="pasatiempos">
+            <input type="text" class="form-control" [formControlName]="i" *ngFor="let pasatiempo of forma.controls['pasatiempos'].controls; let i = index">
+        </div>
+    </div>
+
+    <button (click)="guardarPasatiempos()" type="button" class="btn btn-primary">
+        Guardar Pasatiempo
+    </button>
 
 
     <div class="form-group row" *ngIf="forma.valid">
