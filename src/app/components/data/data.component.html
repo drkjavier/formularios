@@ -8,9 +8,9 @@
         <div class="form-group row">
             <label for="inputNombre" class="col-2 col-form-label">Nombre</label>
             <div class="col-8">
-                <input id="inputNombre" class="form-control" type="text" placeholder="Nombre" formControlName="nombre" [ngClass]="{ 'is-invalid': !forma.get('nombrecompleto.nombre').valid, 'is-valid': forma.get('nombrecompleto.nombre').valid }">
-                <div *ngIf="forma.get('nombrecompleto.nombre').errors?.required" class="invalid-feedback">El nombre es necesario</div>
-                <div *ngIf="forma.get('nombrecompleto.nombre').errors?.minlength" class="invalid-feedback">Por lo menos 3 caracteres</div>
+                <input id="inputNombre" class="form-control" type="text" placeholder="Nombre" formControlName="nombre" [ngClass]="{ 'is-invalid': !forma.get('nombrecompleto.nombre').valid && !forma.get('nombrecompleto.nombre').pristine, 'is-valid': forma.get('nombrecompleto.nombre').valid }">
+                <div *ngIf="forma.get('nombrecompleto.nombre').errors?.required && !forma.get('nombrecompleto.nombre').pristine" class="invalid-feedback">El nombre es necesario</div>
+                <div *ngIf="forma.get('nombrecompleto.nombre').errors?.minlength && !forma.get('nombrecompleto.nombre').pristine" class="invalid-feedback">Por lo menos 3 caracteres</div>
             </div>
         </div>
 
@@ -18,9 +18,9 @@
             <label class="col-2 col-form-label">Apellido</label>
             <div class="col-8">
 
-                <input class="form-control" type="text" placeholder="Apellido" formControlName="apellido" [ngClass]="{ 'is-invalid': !forma.get('nombrecompleto.apellido').valid, 'is-valid': forma.get('nombrecompleto.apellido').valid }">
-                <div *ngIf="forma.get('nombrecompleto.apellido').errors?.required" class="invalid-feedback">El apellido es necesario</div>
-                <div *ngIf="forma.get('nombrecompleto.apellido').errors?.minlength" class="invalid-feedback">Por lo menos 3 caracteres</div>
+                <input class="form-control" type="text" placeholder="Apellido" formControlName="apellido" [ngClass]="{ 'is-invalid': !forma.get('nombrecompleto.apellido').valid && !forma.get('nombrecompleto.apellido').pristine, 'is-valid': forma.get('nombrecompleto.apellido').valid }">
+                <div *ngIf="forma.get('nombrecompleto.apellido').errors?.required && !forma.get('nombrecompleto.apellido').pristine" class="invalid-feedback">El apellido es necesario</div>
+                <div *ngIf="forma.get('nombrecompleto.apellido').errors?.minlength && !forma.get('nombrecompleto.apellido').pristine" class="invalid-feedback">Por lo menos 3 caracteres</div>
             </div>
         </div>
 
@@ -30,9 +30,9 @@
         <label class="col-2 col-form-label">Correo</label>
         <div class="col-md-8">
 
-            <input class="form-control" type="email" placeholder="Correo electrónico" formControlName="correo" [ngClass]="{ 'is-invalid': !forma.get('correo').valid, 'is-valid': forma.get('correo').valid }">
-            <div *ngIf="forma.controls['correo'].errors?.required" class="invalid-feedback"></div>
-            <div *ngIf="forma.controls['correo'].errors?.required" class="invalid-feedback"></div>
+            <input class="form-control" type="email" placeholder="Correo electrónico" formControlName="correo" [ngClass]="{ 'is-invalid': !forma.get('correo').valid && !forma.get('correo').pristine, 'is-valid': forma.get('correo').valid }">
+            <div *ngIf="forma.get('correo').errors?.required" class="invalid-feedback">Debe ingresar el correo</div>
+            <div *ngIf="!forma.get('correo').errors?.valid && !forma.get('correo').errors?.required && !forma.get('correo').pristine" class="invalid-feedback">Correo invalido</div>
         </div>
     </div>
 
