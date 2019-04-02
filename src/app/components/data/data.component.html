@@ -35,6 +35,14 @@
             <div *ngIf="!forma.get('correo').errors?.valid && !forma.get('correo').errors?.required && !forma.get('correo').pristine" class="invalid-feedback">Correo invalido</div>
         </div>
     </div>
+    <div class="form-group row" [ngClass]="{ 'has-danger': !forma.get('username').valid }">
+        <label class="col-2 col-form-label">Username</label>
+        <div class="col-md-8">
+
+            <input class="form-control" type="text" placeholder="Username" formControlName="username">
+        </div>
+    </div>
+
     <div class="form-group row" [ngClass]="{ 'has-danger': !forma.get('correo').valid }">
         <label class="col-2 col-form-label">Password1</label>
         <div class="col-md-8">
@@ -73,5 +81,7 @@
       </button>
         </div>
     </div>
+
+    <br> {{ forma.status }}
 
 </form>
