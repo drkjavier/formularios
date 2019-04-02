@@ -38,6 +38,10 @@ export class DataComponent implements OnInit {
         this.forma.controls['password2'].setValidators([
           Validators.required, this.notEquals.bind(this.forma)
         ]);
+
+        this.forma.valueChanges.subscribe(data => {
+          console.log(data);
+        });
    }
   ngOnInit() {
   }
