@@ -35,6 +35,24 @@
             <div *ngIf="!forma.get('correo').errors?.valid && !forma.get('correo').errors?.required && !forma.get('correo').pristine" class="invalid-feedback">Correo invalido</div>
         </div>
     </div>
+    <div class="form-group row" [ngClass]="{ 'has-danger': !forma.get('correo').valid }">
+        <label class="col-2 col-form-label">Password1</label>
+        <div class="col-md-8">
+
+            <input class="form-control" type="text" placeholder="Password" formControlName="password1" [ngClass]="{ 'is-invalid': !forma.get('password1').valid && !forma.get('password1').pristine, 'is-valid': forma.get('password1').valid }">
+            <div *ngIf="forma.get('password1').errors?.required" class="invalid-feedback">Debe ingresar el password</div>
+            <div *ngIf="!forma.get('password1').errors?.valid && !forma.get('password1').errors?.required && !forma.get('password1').pristine" class="invalid-feedback">Password invalido</div>
+        </div>
+    </div>
+    <div class="form-group row" [ngClass]="{ 'has-danger': !forma.get('correo').valid }">
+        <label class="col-2 col-form-label">Password2</label>
+        <div class="col-md-8">
+
+            <input class="form-control" type="text" placeholder="Confirmar password" formControlName="password2" [ngClass]="{ 'is-invalid': !forma.get('password2').valid && !forma.get('password2').pristine, 'is-valid': forma.get('password2').valid }">
+            <div *ngIf="forma.get('password2').errors?.required" class="invalid-feedback">Debe confirmar el password</div>
+            <div *ngIf="!forma.get('password2').errors?.valid && !forma.get('password2').errors?.required && !forma.get('password2').pristine" class="invalid-feedback">Password invalido</div>
+        </div>
+    </div>
 
     <div class="form-group row" [ngClass]="{ 'has-danger': !forma.get('correo').valid }">
         <label class="col-2 col-form-label">Pasatiempos</label>
@@ -44,9 +62,8 @@
     </div>
 
     <button (click)="guardarPasatiempos()" type="button" class="btn btn-primary">
-        Guardar Pasatiempo
-    </button>
-
+            Guardar Pasatiempo
+        </button>
 
     <div class="form-group row" *ngIf="forma.valid">
         <label class="col-2 col-form-label">&nbsp;</label>

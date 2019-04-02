@@ -22,14 +22,20 @@ export class DataComponent implements OnInit {
     this.forma = new FormGroup({
       'nombrecompleto': new FormGroup({
         'nombre': new FormControl(this.usuario.nombrecompleto.nombre, [ Validators.required, Validators.minLength(3) ]),
-        'apellido': new FormControl(this.usuario.nombrecompleto.apellido, [ Validators.required, Validators.minLength(3) ])
+        'apellido': new FormControl(this.usuario.nombrecompleto.apellido, [ Validators.required, Validators.minLength(3), this.noHerrera ])
       }),
       'correo': new FormControl(this.usuario.correo, [  Validators.required,  
                                                         Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$') ]),
       'pasatiempos': new FormArray([
         new FormControl('Correr', Validators.required)
-      ])
-    });
+      ]),
+      'password1': new FormControl('', Validators.required),
+      'password2': new FormControl()
+        });
+
+        this.forma.controls['password2'].setValidators([
+          Validators.required, this.notEquals.bind(this.forma)
+        ]);
    }
   ngOnInit() {
   }
@@ -48,6 +54,23 @@ export class DataComponent implements OnInit {
 
   guardarPasatiempos() {
       (<FormArray> this.forma.controls['pasatiempos']).push(new FormControl('Dormir', Validators.required));
+  }
+
+  noHerrera (control: FormControl): {[s: string]: boolean} {
+    if (control.value === 'Curtis') {
+      return {
+        nocurtis: true
+      };
+    }
+    return null;
+  }
+  notEquals (control: FormControl): {[s: string]: boolean} {
+    if (control.value !== this.controls['password1'].value) {
+      return {
+        nocurtis: true
+      };
+    }
+    return null;
   }
 
   cleanForm () {
